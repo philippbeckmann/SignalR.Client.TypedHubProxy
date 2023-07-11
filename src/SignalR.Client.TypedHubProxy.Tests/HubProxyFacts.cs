@@ -242,7 +242,7 @@ namespace SignalR.Client.TypedHubProxy.Tests
             IEnumerable<IDisposable> subscriptions = null;
             Action act = () => subscriptions = _fixture.WrongProxy.SubscribeOnAll(clientContract)?.ToList();
 
-            act.ShouldThrow<NotSupportedException>();
+            act.Should().Throw<NotSupportedException>();
         }
 
         /// <summary>
@@ -261,7 +261,7 @@ namespace SignalR.Client.TypedHubProxy.Tests
             var clientContract = new TestClientContract(actCallback);
             IEnumerable<IDisposable> subscriptions = null;
             Action act = () => subscriptions = _fixture.Proxy.SubscribeOnAll(clientContract);
-            act.ShouldNotThrow(TestConsts.ERR_SHOULD_FIX_ISSUE_9);
+            act.Should().NotThrow(TestConsts.ERR_SHOULD_FIX_ISSUE_9);
 
             _fixture.HubProxyMock.Object.InvokeEvent(hub => hub.Passing3Params(1, 2, 3));
 

@@ -12,12 +12,10 @@ namespace Microsoft.AspNet.SignalR.Client
 
         internal static ActionDetail GetActionDetails<T>(this Expression<Action<T>> action)
         {
-            if (!(action.Body is MethodCallExpression))
+            if (!(action.Body is MethodCallExpression callExpression))
             {
                 throw new ArgumentException(ERR_ACTION_MUST_BE_METHODCALL, nameof(action));
             }
-
-            var callExpression = (MethodCallExpression) action.Body;
 
             var actionDetail = new ActionDetail
             {
@@ -30,12 +28,10 @@ namespace Microsoft.AspNet.SignalR.Client
 
         internal static ActionDetail GetActionDetails<TInput, TResult>(this Expression<Func<TInput, TResult>> action)
         {
-            if (!(action.Body is MethodCallExpression))
+            if (!(action.Body is MethodCallExpression callExpression))
             {
                 throw new ArgumentException(ERR_ACTION_MUST_BE_METHODCALL, nameof(action));
             }
-
-            var callExpression = (MethodCallExpression) action.Body;
 
             var actionDetail = new ActionDetail
             {
